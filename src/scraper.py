@@ -1,10 +1,10 @@
-import time
+import time, bag
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
-class Scraper:
+class FileScraper:
 
   def __init__(self) -> None:
     self.driver = self.get_driver()
@@ -37,7 +37,12 @@ class Scraper:
       self.driver.close()
       self.driver.quit()
 
-  def download_html(self, url: str, filename: str, extention: str = 'html'):
+
+  def download_files(self, bag: bag):
+    print(bag)
+    return True
+
+  def __download_html(self, url: str, filename: str, extention: str = 'html'):
     try:
       self.driver.get(url)
       time.sleep(2)
