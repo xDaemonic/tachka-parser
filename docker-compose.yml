@@ -6,7 +6,9 @@ services:
       dockerfile: ./docker/Dockerfile
     shm_size: 2gb
     volumes:
-      - ./scrap.py:/scrap.py
+      - ./main.py:/main.py
       - ./screenshots:/screenshots:cached
-    command: 'python3 scrap.py'
+      - ./files:/files:cached
+      - ./src:/src:cached
+    command: 'python3 main.py'
     
