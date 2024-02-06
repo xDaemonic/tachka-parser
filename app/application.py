@@ -1,6 +1,6 @@
-from src.scraper import Scraper
+from app.src.scraper import Scraper
 
-class App:
+class FileScrapper:
   urls = []
 
   def __init__(self) -> None:
@@ -13,3 +13,7 @@ class App:
     scraper = Scraper()
     for url in self.urls: 
       scraper.download_html(url, 'tachka_global_categories')
+
+class Detail:
+  def __init__(self, filename) -> None:
+    pass

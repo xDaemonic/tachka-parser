@@ -6,9 +6,6 @@ services:
       dockerfile: ./docker/Dockerfile
     shm_size: 2gb
     volumes:
-      - ./main.py:/main.py
-      - ./screenshots:/screenshots:cached
-      - ./files:/files:cached
-      - ./src:/src:cached
-    command: 'python3 main.py'
+      - ./:/project:cached
+    command: 'python3 /project/main.py'
     

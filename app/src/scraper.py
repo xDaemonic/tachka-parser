@@ -42,11 +42,11 @@ class Scraper:
       self.driver.get(url)
       time.sleep(2)
       html = self.driver.page_source
-      with open(f"/files/{filename}.{extention}", 'w+') as f:
+      with open(f"/project/files/{filename}.{extention}", 'w+') as f:
         f.write(html)
         f.close()
     except Exception:
-      print(Exception.message())
+      # print(Exception.__base__)
       pass
     finally:
       self.driver.close()
