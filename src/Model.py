@@ -4,8 +4,6 @@ class Model:
       attributes: dict
       ) -> None:
     
-
-    print(attributes)
     for key, val in attributes.items():
       if key in self.__annotations__:
         self.setAttribute(key, val)

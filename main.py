@@ -25,5 +25,7 @@ if __name__ == "__main__":
     data = [FileItem(item) for item in process_list]
     bag = Bag(data)
     
+    for bag_item in bag.getItems():
+      print(bag_item)
 
   
