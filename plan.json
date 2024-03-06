@@ -4,6 +4,8 @@
     "url": "https://tachka.ru/zapchasti",
     "ext": "html",
     "downloaded": true,
-    "processed": false
+    "processed": false,
+    "filepath": "/project/files/html/tachka_global_categories.html",
+    "scenario": "GlobalCategoriesScenario"
   }
 ]

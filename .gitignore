@@ -1,2 +1,4 @@
 .DS_Store
 makefile
+**/.DS_Store
+**/__pycache__
