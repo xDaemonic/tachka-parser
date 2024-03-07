@@ -3,7 +3,7 @@ from src.Bag import Bag
 from src.Plan import Plan
 
 from factory.BagFactory import BagFactory
-from factory.ScenatioFactory import ScenarioFactory
+from factory.ScenarioFactory import ScenarioFactory
 
 from models.FileItem import FileItem
 
@@ -15,16 +15,27 @@ def dd(el):
 
 if __name__ == "__main__":
   plan = Plan()
-  scrapper = FileScraper()
-
-  download_bag = BagFactory.make(plan.getDownloadList(), FileItem)
-  download_bag = scrapper.download_files(download_bag)
-  
-  plan.update(download_bag)
-  del download_bag
-
   process_bag = BagFactory.make(plan.getProcessList(), FileItem)
   for item in process_bag.getItems():
-    if item.hasScenario() and item.hasHtml():
-      scenario = ScenarioFactory.make(item.scenario, '<html>')
-      scenario.run()
+    if item.hasScenario():
+      scenario = ScenarioFactory.make(item.scenario)
+      scenario.run(item)
+  
+  
+  
+  
+  # scrapper = FileScraper()
+
+
+
+  # download_bag = BagFactory.make(plan.getDownloadList(), FileItem)
+  # download_bag = scrapper.download_files(download_bag)
+  
+  # plan.update(download_bag)
+  # del download_bag
+
+  # process_bag = BagFactory.make(plan.getProcessList(), FileItem)
+  # for item in process_bag.getItems():
+  #   if item.hasScenario() and item.hasHtml():
+  #     scenario = ScenarioFactory.make(item.scenario, item.getHtml())
+  #     scenario.run()

@@ -6,9 +6,13 @@ from models.FileItem import FileItem
 class Plan:
   __filepath: str
 
-  def __init__(self, fp: str = '/project/plan.json') -> None:
+  def __init__(self, fp: str = '/project/files/json/plan.json') -> None:
     self.__filepath = fp
 
+  def addList(self, data: list) -> None:
+    merged = [x for n in (self.getList(), data) for x in n]
+    self.__savePlan(merged)
+    
   def update(self, bag: Bag) -> None:
     listing = self.getList()
     for item in bag.getItems():

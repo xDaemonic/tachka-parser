@@ -1,4 +1,5 @@
 import time
+from fake_useragent import UserAgent
 
 from src.Model import Model
 from src.Bag import Bag
@@ -10,23 +11,30 @@ from selenium.webdriver.common.by import By
 class FileScraper:
 
   html_folder = '/project/files'
+  driver = None
 
   def __init__(self) -> None:
-    self.driver = self.get_driver()
+    pass
 
   def setHtmlFolder(self, folder: str) -> None:
     self.html_folder = folder
 
-  def get_driver(self):
+  def init_driver(self):
+    ua = UserAgent()
     options = Options()
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--headless')
     options.add_argument('--start-maximized')
+    options.add_argument(f"user-agent={ua.chrome}")
 
-    return webdriver.Chrome(options=options)
+    self.driver = webdriver.Chrome(options=options)
   
+  def destroy_driver(self):    
+    self.driver.close()
+    self.driver.quit()
+
 
   def test_fullpage_screenshot(self, url: str, filename: str):
     try:
@@ -40,22 +48,28 @@ class FileScraper:
       self.driver.save_screenshot(f"screenshots/{filename}")
     except Exception:
       pass
+
     finally:
-      self.driver.close()
-      self.driver.quit()
+      self.destroy_driver()
 
+  def download_file(self, item: FileItem):
+    self.init_driver()
+    result = self.__download_html(item.url, item.name, item.ext)
+    self.destroy_driver()
 
-  def download_file(self, item: Model):
-    return self.__download_html(item.url, item.name, item.ext)
-
+    return result
   
   def download_files(self, bag: Bag) -> Bag:
+    if (self.driver == None): self.init_driver()
+          
     for item in bag.getItems():
       if isinstance(item, FileItem):
         filepath = self.__download_html(item.url, item.name, item.ext)
         item.setAttribute('filepath', filepath)
         item.setAttribute('downloaded', True)
-
+        
+    self.destroy_driver()
+    
     return bag
 
   def __download_html(self, url: str, filename: str, extention: str = 'html'):
@@ -71,9 +85,5 @@ class FileScraper:
       return filepath
     
     except Exception:
-      # print(Exception.__base__)
-      return None
-    finally:
-      self.driver.close()
-      self.driver.quit()
+      pass
     
