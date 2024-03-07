@@ -1,5 +1,7 @@
 import json
 from src.Model import Model
+from src.Bag import Bag
+from models.FileItem import FileItem
 
 class Plan:
   __filepath: str
@@ -7,26 +9,38 @@ class Plan:
   def __init__(self, fp: str = '/project/plan.json') -> None:
     self.__filepath = fp
 
+  def update(self, bag: Bag) -> None:
+    listing = self.getList()
+    for item in bag.getItems():
+      listing = self.__replcaeItem(listing, item)
+
+    self.__savePlan(listing)
+
   def getList(self):
     return list(json.load(open(self.__filepath, 'r+')))
   
   def setFilepath(self, filepath: str):
     self.__filepath = filepath
 
-  def updateItem(self, item: Model): 
+  def updateFileItem(self, item: FileItem):
     listing = self.getList()
-    for i in range(len(listing)):
-      if (listing[i]['name'] == item.name):
-        listing[i] = item.getAttibutes()
+    listing = self.__replcaeItem(listing, item)
 
     self.__savePlan(listing)
-
-  def __savePlan(self, data:list):
-    json.dump(data, open(self.__filepath, 'w+'))
 
   def getDownloadList(self):
     return list(filter(lambda item: not item['downloaded'], self.getList()))
   
   def getProcessList(self):
     return list(filter(lambda item: not item['processed'], self.getList()))
-  
+
+  def __replcaeItem(self, listing: list, item: FileItem) -> list:
+    for i in range(len(listing)):
+      if (listing[i]['name'] == item.name):
+        listing[i] = item.getAttibutes()
+        break
+
+    return listing
+
+  def __savePlan(self, data:list):
+    json.dump(data, open(self.__filepath, 'w+'))

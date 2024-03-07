@@ -1,5 +1,5 @@
 from src.Scenario import Scenario
 
 class GlobalCategoriesScenario(Scenario):
-  def __init__ (self) -> None:
-    pass
+  def run(self):
+    print(self._soup)

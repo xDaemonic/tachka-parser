@@ -1,6 +1,8 @@
 import time
 
 from src.Model import Model
+from src.Bag import Bag
+from models.FileItem import FileItem
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -45,6 +47,16 @@ class FileScraper:
 
   def download_file(self, item: Model):
     return self.__download_html(item.url, item.name, item.ext)
+
+  
+  def download_files(self, bag: Bag) -> Bag:
+    for item in bag.getItems():
+      if isinstance(item, FileItem):
+        filepath = self.__download_html(item.url, item.name, item.ext)
+        item.setAttribute('filepath', filepath)
+        item.setAttribute('downloaded', True)
+
+    return bag
 
   def __download_html(self, url: str, filename: str, extention: str = 'html'):
     filepath = f"{self.html_folder}/{extention}/{filename}.{extention}"

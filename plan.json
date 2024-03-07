@@ -1,11 +1,1 @@
-[
-  {
-    "name": "tachka_global_categories",
-    "url": "https://tachka.ru/zapchasti",
-    "ext": "html",
-    "downloaded": true,
-    "processed": false,
-    "filepath": "/project/files/html/tachka_global_categories.html",
-    "scenario": "GlobalCategoriesScenario"
-  }
-]
+[{"name": "tachka_global_categories", "url": "https://tachka.ru/zapchasti", "ext": "html", "downloaded": true, "processed": false, "scenario": "GlobalCategoriesScenario", "filepath": "/project/files/html/tachka_global_categories.html"}]
