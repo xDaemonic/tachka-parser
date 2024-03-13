@@ -42,5 +42,5 @@ if __name__ == '__main__':
     
     
   map(lambda process: process.start(), process_list)
-  map(lambda process: process.join(), process_list)
+  # map(lambda process: process.join(), process_list)
     
