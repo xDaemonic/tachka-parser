@@ -27,8 +27,6 @@ def scrap_links(link: dict):
     json.dump(result, f)
     f.close()
 
-  json_worker.set_process_category_status(link['url'], True)
-
 if __name__ == '__main__':
   categories_links = categories_worker.load_categories_links()
   process_list = []
