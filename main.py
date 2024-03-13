@@ -2,8 +2,9 @@ from src import categories_worker
 from src import pages_worker
 from src import format
 from src import helpers
+from src import json_worker
 
-from multiprocessing import Pool
+from multiprocessing import Process
 
 import requests, json
 
@@ -26,6 +27,7 @@ def scrap_links(link: dict):
     json.dump(result, file)
     file.close()
 
+  json_worker.set_process_category_status(link['url'], True)
 
 if __name__ == '__main__':
   print('ok')
@@ -33,11 +35,13 @@ if __name__ == '__main__':
   proxies = {
     'https': 'https://185.225.232.191:80'
   }
-  pool = Pool()
-  print(pool)
-  for link in categories_links:
-    print(link)
-    pool.apply_async(scrap_links, link)
-    exit()
   
+  process_list = []
+  for link in categories_links:
+    p = Process(scrap_links, args=[link])
+    process_list.append(p)
+    break
+  
+  map(lambda process: process.start(), process_list)
+  map(lambda process: process.join(), process_list)
     
