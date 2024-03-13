@@ -11,7 +11,7 @@ import requests, json
 def scrap_links(link: dict):
   print('prorcess runned')
   category = format.remove_base_url(link['url'])
-  resp = requests.get(link['url'], proxies=proxies)
+  resp = requests.get(link['url'])
   print(resp.status_code)
   page = 0
   result = []
