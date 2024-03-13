@@ -29,8 +29,9 @@ def scrap_links(link: dict):
 
 if __name__ == '__main__':
   categories_links = categories_worker.load_categories_links()
-  process_list = []
+  # process_list = []
   for link in categories_links:
-    p = mp.Process(target=scrap_links, args=(link,))
-    p.start()
+    # p = mp.Process(target=scrap_links, args=(link,))
+    # p.start()
+    scrap_links(link)
     
