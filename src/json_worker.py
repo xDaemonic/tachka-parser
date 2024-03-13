@@ -1,4 +1,5 @@
-import json, categories_worker
+import json
+from src import categories_worker
 
 def set_process_category_status(url: str, status: bool) -> None:
   with open(categories_worker.get_category_filepath(), 'a+') as file:
