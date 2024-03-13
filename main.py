@@ -11,6 +11,8 @@ import requests, json
 def scrap_links(link: dict):
   print('prorcess runned')
   category = format.remove_base_url(link['url']).replace('/', '__')
+  print(category)
+  exit(200)
   resp = requests.get(link['url'])
   page = 0
   result = []
@@ -42,9 +44,9 @@ if __name__ == '__main__':
   # print('ok')
   # exit(200)     
   categories_links = list(filter(lambda item: not item['proc'], categories_links))
-  print(categories_links[0])
+  for link in categories_links:
   # print(categories_links[0])
   # p = mp.Process(target=scrap_links, args=(link,))
     # p.start()
-    # scrap_links(link)
+    scrap_links(link)
     
