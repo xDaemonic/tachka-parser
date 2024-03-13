@@ -29,7 +29,7 @@ def scrap_links(link: dict):
 
 if __name__ == '__main__':
   with open(categories_worker.get_category_filepath(), 'a+') as file:
-    file.truncate()
+    file.truncate(0)
     print(file.read())
     exit(200)
   
