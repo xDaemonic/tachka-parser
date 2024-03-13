@@ -31,7 +31,8 @@ if __name__ == '__main__':
   proxies = {
     'https': 'https://185.225.232.191:80'
   }
-  pool = Pool()
+  pool = Pool(10)
   for link in categories_links:
     pool.apply_async(scrap_links, link)
+  
     
