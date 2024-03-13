@@ -37,7 +37,7 @@ if __name__ == '__main__':
   
   process_list = []
   for link in categories_links:
-    p = mp.Process(scrap_links, args=(link,))
+    p = mp.Process(target=scrap_links, args=(link,))
     print(p)
   
   map(lambda process: process.start(), process_list)
