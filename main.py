@@ -28,6 +28,9 @@ def scrap_links(link: dict):
     f.close()
 
 if __name__ == '__main__':
+  with open(categories_worker.get_category_filepath(), 'a+') as file:
+    file.truncate()
+    file.close()
   
   categories_links = categories_worker.get_categories_links()
   for i in range(0, len(categories_links)):
