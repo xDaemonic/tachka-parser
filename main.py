@@ -34,13 +34,13 @@ if __name__ == '__main__':
   categories_links = categories_worker.load_categories_links()
   process_list = []
   for link in categories_links:
-    print(link)
     p = mp.Process(target=scrap_links, args=(link,))
     # p.start()
     # p.join()
     process_list.append(p)
     
     
+  print(process_list)
   map(lambda process: process.start(), process_list)
   map(lambda process: process.join(), process_list)
     
