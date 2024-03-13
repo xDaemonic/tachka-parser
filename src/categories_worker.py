@@ -28,6 +28,7 @@ def get_categories_links():
   global categories_links_filepath
   with open(categories_links_filepath, 'a+') as file:
     result = json.load(file)
+    print(result)
     file.close()
   return result
 
