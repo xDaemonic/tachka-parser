@@ -32,7 +32,7 @@ if __name__ == '__main__':
     file.truncate()
     file.close()
   
-  categories_links = categories_worker.get_categories_links()
+  categories_links = categories_worker.load_categories_links()
   for i in range(0, len(categories_links)):
     if categories_links[i]['url'] == 'https://tachka.ru/tormoza/tormozniye-shlangi':
       break
