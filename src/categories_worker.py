@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from src import format
 
 categories_links_url = 'https://tachka.ru/zapchasti'
-categories_links_filepath = './../json/categories_links.json'
+categories_links_filepath = './json/categories_links.json'
 
 def load_categories_links():
   resp = requests.get(categories_links_url)
@@ -27,7 +27,7 @@ def get_category_filepath() -> str:
 def get_categories_links():
   global categories_links_filepath
   with open(categories_links_filepath, 'a+') as file:
-    result = json.load(file)
+    result = json.loads(file.read())
     file.close()
     return result
 
