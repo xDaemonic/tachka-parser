@@ -33,7 +33,8 @@ if __name__ == '__main__':
     'https': 'https://185.225.232.191:80'
   }
   pool = Pool(10)
+  print(pool)
   for link in categories_links:
-    pool.apply_async(scrap_links, link)
+    pool.apply(scrap_links, link)
   
     
