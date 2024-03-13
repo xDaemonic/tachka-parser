@@ -10,9 +10,7 @@ import requests, json
 
 def scrap_links(link: dict):
   print('prorcess runned')
-  category = format.remove_base_url(link['url']).replace('/', '__')
-  print(category)
-  exit(200)
+  category = format.remove_base_url(link['url']).replace('/', '-')
   resp = requests.get(link['url'])
   page = 0
   result = []
