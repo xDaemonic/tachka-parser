@@ -4,7 +4,7 @@ from src import format
 from src import helpers
 from src import json_worker
 
-from multiprocessing import Process
+import multiprocessing as mp
 
 import requests, json
 
@@ -37,9 +37,8 @@ if __name__ == '__main__':
   
   process_list = []
   for link in categories_links:
-    p = Process(scrap_links, args=[link,])
-    process_list.append(p)
-    break
+    p = mp.Process(scrap_links,[link])
+    print(p)
   
   map(lambda process: process.start(), process_list)
   map(lambda process: process.join(), process_list)
