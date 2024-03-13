@@ -27,6 +27,7 @@ def scrap_links(link: dict):
 
 
 if __name__ == '__main__':
+  print('ok')
   categories_links = categories_worker.load_categories_links()
   proxies = {
     'https': 'https://185.225.232.191:80'
