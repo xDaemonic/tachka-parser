@@ -38,9 +38,10 @@ if __name__ == '__main__':
   
   process_list = []
   for link in categories_links:
-    p = mp.Process(target=scrap_links, args=(link,))
-    p.start()
-    p.join()
+    print(link)
+    # p = mp.Process(target=scrap_links, args=(link,))
+    # p.start()
+    # p.join()
     # process_list.append(p)
     
     
