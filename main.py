@@ -30,7 +30,6 @@ def scrap_links(link: dict):
   json_worker.set_process_category_status(link['url'], True)
 
 if __name__ == '__main__':
-  print('ok')
   categories_links = categories_worker.load_categories_links()
   proxies = {
     'https': 'https://185.225.232.191:80'
@@ -38,7 +37,7 @@ if __name__ == '__main__':
   
   process_list = []
   for link in categories_links:
-    p = Process(scrap_links, args=[link])
+    p = Process(scrap_links, args=[link,])
     process_list.append(p)
     break
   
