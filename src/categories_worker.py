@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from src import format
 
 categories_links_url = 'https://tachka.ru/zapchasti'
-categories_links_filepath = './json/categories_links.json'
+categories_links_filepath = './../json/categories_links.json'
 
 def load_categories_links():
   resp = requests.get(categories_links_url)

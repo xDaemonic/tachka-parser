@@ -28,8 +28,8 @@ def scrap_links(link: dict):
     f.close()
 
 if __name__ == '__main__':
+  
   categories_links = categories_worker.get_categories_links()
-  exit(200)
   for i in range(0, len(categories_links)):
     if categories_links[i]['url'] == 'https://tachka.ru/tormoza/tormozniye-shlangi':
       break
