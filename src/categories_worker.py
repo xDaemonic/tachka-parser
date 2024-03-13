@@ -26,9 +26,9 @@ def get_category_filepath() -> str:
     
 def get_categories_links():
   global categories_links_filepath
-  file = open(categories_links_filepath, 'a+')
-  result = json.load(file)
-  file.close()
+  with open(categories_links_filepath, 'a+') as file:
+    result = json.load(file)
+    file.close()
   return result
 
 def set_categories_filepath(path: str):
