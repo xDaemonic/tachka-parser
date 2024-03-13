@@ -32,7 +32,7 @@ if __name__ == '__main__':
   #   file.truncate(0)
   #   file.close()
   
-  categories_links = categories_worker.get_categories_links()
+  categories_links = categories_worker.load_categories_links()
   print(categories_links)
   exit(200)
   # categories_links = list(filter(lambda item: not item['proce'], categories_links))
