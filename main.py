@@ -10,6 +10,7 @@ import requests, json
 def scrap_links(link: dict):
   category = format.remove_base_url(link['url'])
   resp = requests.get(link['url'], proxies=proxies)
+  print(resp.status_code)
   page = 0
   result = []
   while resp.status_code == 200:
