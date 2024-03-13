@@ -11,7 +11,6 @@ def load_categories_links():
   categories = soup.find('ul', {'class': 'more-items__list'}).find_all('a')
   categories = list(map(lambda item: { 'url': format.url(item['href']), 'proc': False }, categories))
 
-
   if not os.path.isdir('./json'):
     os.mkdir('./json', 644)
   
@@ -20,6 +19,10 @@ def load_categories_links():
     file.close()
     
   return categories
+    
+def get_category_filepath() -> str:
+  global categories_links_filepath
+  return categories_links_filepath
     
 def get_categories_links():
   file = open(categories_links_filepath, 'r+')
