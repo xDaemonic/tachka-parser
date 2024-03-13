@@ -12,7 +12,6 @@ def scrap_links(link: dict):
   print('prorcess runned')
   category = format.remove_base_url(link['url'])
   resp = requests.get(link['url'])
-  print(resp.status_code)
   page = 0
   result = []
   while resp.status_code == 200:
@@ -24,9 +23,9 @@ def scrap_links(link: dict):
     path = format.page_url(link['url'], page)
     resp = requests.get(path)
           
-  with open(f"./json/{category}.json", 'a+') as file:
-    json.dump(result, file)
-    file.close()
+  with open(f"./json/{category}.json", 'a+') as f:
+    json.dump(result, f)
+    f.close()
 
   json_worker.set_process_category_status(link['url'], True)
 
