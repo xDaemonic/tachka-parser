@@ -35,6 +35,7 @@ if __name__ == '__main__':
   pool = Pool(10)
   print(pool)
   for link in categories_links:
-    pool.apply(scrap_links, link)
+    print(link)
+    pool.apply_async(scrap_links, link)
   
     
