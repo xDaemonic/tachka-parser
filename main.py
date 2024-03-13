@@ -33,7 +33,7 @@ if __name__ == '__main__':
   proxies = {
     'https': 'https://185.225.232.191:80'
   }
-  pool = Pool(10)
+  pool = Pool()
   print(pool)
   for link in categories_links:
     print(link)
