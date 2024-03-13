@@ -9,6 +9,7 @@ import multiprocessing as mp
 import requests, json
 
 def scrap_links(link: dict):
+  print('ol123123123')
   category = format.remove_base_url(link['url'])
   resp = requests.get(link['url'], proxies=proxies)
   print(resp.status_code)
