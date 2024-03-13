@@ -44,9 +44,9 @@ if __name__ == '__main__':
   # print('ok')
   # exit(200)     
   categories_links = list(filter(lambda item: not item['proc'], categories_links))
-  # for link in categories_links:
+  for link in categories_links:
   # print(categories_links[0])
   # p = mp.Process(target=scrap_links, args=(link,))
     # p.start()
-    # scrap_links(link)
+    scrap_links(link)
     
