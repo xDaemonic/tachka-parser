@@ -22,7 +22,7 @@ def scrap_links(link: dict):
     
     page += 1
     path = format.page_url(link['url'], page)
-    resp = requests.get(path, proxies=proxies)
+    resp = requests.get(path)
           
   with open(f"./json/{category}.json", 'a+') as file:
     json.dump(result, file)
@@ -32,16 +32,12 @@ def scrap_links(link: dict):
 
 if __name__ == '__main__':
   categories_links = categories_worker.load_categories_links()
-  proxies = {
-    'https': 'https://185.225.232.191:80'
-  }
-  
   process_list = []
   for link in categories_links:
     print(link)
-    # p = mp.Process(target=scrap_links, args=(link,))
-    # p.start()
-    # p.join()
+    p = mp.Process(target=scrap_links, args=(link,))
+    p.start()
+    p.join()
     # process_list.append(p)
     
     
