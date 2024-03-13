@@ -1,4 +1,4 @@
-import requests, lxml, json
+import requests, lxml, json, os
 from bs4 import BeautifulSoup
 from src import format
 
@@ -11,6 +11,10 @@ def load_categories_links():
   categories = soup.find('ul', {'class': 'more-items__list'}).find_all('a')
   categories = list(map(lambda item: { 'url': format.url(item['href']), 'proc': False }, categories))
 
+
+  if not os.path.isdir('./json'):
+    os.mkdir('./json', 644)
+  
   with open(categories_links_filepath, 'a+') as file:
     json.dump(categories, file)
     file.close()
