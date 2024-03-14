@@ -48,8 +48,8 @@ def run():
   print(tables)
   cols = []
   for table in tables:
-    cols = database_table_coluns(table)
-    cols['table'] = table
-    cols.append(cols)
+    col = database_table_coluns(table)
+    col.append(table)
+    cols.append(col)
   
   print(fails, table, cols)
