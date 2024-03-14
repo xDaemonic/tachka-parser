@@ -52,4 +52,4 @@ def run():
     col.append(table)
     cols.append(col)
   
-  print(fails, table, cols)
+  print(fails, tables, cols)
