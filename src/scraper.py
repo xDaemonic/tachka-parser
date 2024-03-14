@@ -1,5 +1,6 @@
-import json, requests
+import json, requests, multiprocessing, lxml
 from src import pages_worker, helpers, db, format
+from bs4 import BeautifulSoup
 
 def catch_links(link: dict):
   print('prorcess runned')
@@ -24,3 +25,12 @@ def catch_links(link: dict):
   cur = con.cursor()
   cur.execute("UPDATE `categories_links` SET proc = 1 WHERE id = ?", (int(link['id']),))
   con.commit()
+  
+  
+def catch_product(url: str):
+  process = multiprocessing.current_process()
+  gp = format.remove_base_url(url)
+  print(f"getting page: {gp}, process: {process.pid}")
+  resp = requests.get(url)
+  if (resp.status_code == 200):
+    data = pages_worker.process_product_page(resp.text)

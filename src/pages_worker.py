@@ -6,3 +6,7 @@ def process_category_page(html: str) -> list:
   soup = BeautifulSoup(html, 'lxml')
   items = soup.find('div', {'class': 'catalog-list'}).find_all('div', {'class': 'catalog-item'})
   return list(map(lambda item: {'url': format.url(item.find('h3', {'class': 'catalog-item__head'}).find('a')['href']), 'proc': False} , items))
+
+def process_product_page(html: str):
+  soup = BeautifulSoup(html, 'lxml')
+  

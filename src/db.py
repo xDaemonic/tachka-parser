@@ -18,6 +18,11 @@ def get_categories_links() -> list:
   
   return result
 
+
+def get_unprocessed_categories_links() -> list:
+  links = get_categories_links()
+  return list(filter(lambda item: not item['proc'], links))
+
 def get_products_links() -> list:
   con = get_connection()
   cur = con.cursor()
@@ -30,9 +35,17 @@ def get_products_links() -> list:
   
   return result
 
-def get_unprocessed_categories_links() -> list:
-  links = get_categories_links()
-  return list(filter(lambda item: not item['proc'], links))
+def get_unprocessed_products_links() -> list:
+  con = get_connection()
+  cur = con.cursor()
+  cur.execute("SELECT * FROM product_links WHERE proc = 0")
+  result = cur.fetchall()
+  result = toDict(cur, result)
+  
+  for i in range(0, len(result)):
+    result[i]['proc'] = bool(result[i]['proc'])
+  
+  return result
 
 def toDict(cur, data: list):
   if (len(data)):

@@ -5,6 +5,14 @@ import sqlite3
 import requests, json, os, glob
 
 if __name__ == '__main__':
-  product_links = db.get_products_links()
-  print(len(product_links))
-  
+  product_links = db.get_unprocessed_products_links()
+  product_links = helpers.chunks(product_links, 25)
+  for chunk in product_links:
+    process_list = []
+    for elem in chunk:
+      process = mp.Process(target=scraper.catch_product, args=(elem['url'],))
+      process.start()
+      process_list.append(process)
+      
+    for process in process_list:
+      process.join()
