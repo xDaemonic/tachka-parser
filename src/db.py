@@ -38,7 +38,7 @@ def get_products_links() -> list:
 def get_unprocessed_products_links() -> list:
   con = get_connection()
   cur = con.cursor()
-  cur.execute("SELECT * FROM product_links WHERE proc = 0")
+  cur.execute("SELECT * FROM product_links WHERE proc = 0 LIMIT 105")
   result = cur.fetchall()
   result = toDict(cur, result)
   

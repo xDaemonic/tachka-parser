@@ -10,9 +10,10 @@ if __name__ == '__main__':
   for chunk in product_links:
     process_list = []
     for elem in chunk:
-      process = mp.Process(target=scraper.catch_product, args=(elem['url'],))
-      process.start()
-      process_list.append(process)
+      scraper.catch_product(elem['url'])
+    #   process = mp.Process(target=scraper.catch_product, args=(elem['url'],))
+    #   process.start()
+    #   process_list.append(process)
       
-    for process in process_list:
-      process.join()
+    # for process in process_list:
+    #   process.join()
