@@ -9,4 +9,5 @@ def process_category_page(html: str) -> list:
 
 def process_product_page(html: str):
   soup = BeautifulSoup(html, 'lxml')
-  
+  print('ok')
+  exit()
