@@ -26,30 +26,9 @@ def scrap_links(link: dict):
   with open(f"./json/{category}.json", 'a+') as f:
     json.dump(result, f)
     f.close()
-    
-  # json_worker.set_process_category_status(link['url'], True)
 
 if __name__ == '__main__':
   categories_links = categories_worker.load_categories_links()
-  for i in range(0, len(categories_links)):
-    if categories_links[i]['url'] == 'https://tachka.ru/tormoza/tormozniye-shlangi':
-      scrap_links(categories_links[i])
-      break
-    categories_links[i]['proc'] = True
-    
-  exit(200)
-  # with open(categories_worker.get_category_filepath(), 'w+') as file:
-  #   file.truncate()
-  #   json.dump(categories_links, file)
-  #   file.close()
-  
-  # print('ok')
-  # exit(200)     
-  categories_links = list(filter(lambda item: not item['proc'], categories_links))
-  print(categories_links)
-  for link in categories_links:
-  # print(categories_links[0])
-  # p = mp.Process(target=scrap_links, args=(link,))
-    # p.start()
-    scrap_links(link)
+  # for link in categories_links:
+  #   scrap_links(link)
     

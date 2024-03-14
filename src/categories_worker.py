@@ -6,6 +6,12 @@ categories_links_url = 'https://tachka.ru/zapchasti'
 categories_links_filepath = './json/categories_links.json'
 
 def load_categories_links():
+  if os.path.isfile(get_category_filepath()):
+    with open(categories_links_filepath, 'r+') as fp:
+      result = json.load(fp)
+      fp.close()
+      return result
+  
   resp = requests.get(categories_links_url)
   soup = BeautifulSoup(resp.text, 'lxml')
   categories = soup.find('ul', {'class': 'more-items__list'}).find_all('a')
