@@ -1,5 +1,5 @@
 import glob, json, sqlite3
-from src import db
+from src import db, categories_worker
 
 def json_files_valid():
   files = glob.glob('./json/*.json')
@@ -46,7 +46,13 @@ def database_table_coluns(table: str) ->list:
   return [description[0] for description in cursor.description]
 
 
+def processed_categories_links():
+  links = categories_worker.load_categories_links()
+  print(len(links))
+  exit()
+
 def run():
+  links = processed_categories_links()
   fails = json_files_valid()
   tables = databse_connection()
   cnt = count_categories_files()
