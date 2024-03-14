@@ -45,6 +45,7 @@ def database_table_coluns(table: str) ->list:
 def run():
   fails = json_files_valid()
   tables = databse_connection()
+  print(tables)
   cols = []
   for table in tables:
     cols = database_table_coluns(table)
