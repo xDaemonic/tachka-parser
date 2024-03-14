@@ -18,6 +18,10 @@ def get_categories_links() -> list:
   
   return result
 
+def get_unprocessed_categories_links() -> list():
+  links = get_categories_links()
+  return list(filter(lambda item: not item['proc'], links))
+
 def toDict(cur, data: list):
   if (len(data)):
     for i in range(0, len(data)):

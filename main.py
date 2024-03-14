@@ -12,5 +12,5 @@ import sqlite3
 import requests, json, os, glob
 
 if __name__ == '__main__':
-  files = list(filter(lambda item: item != './json/categories_links.json', glob.glob('./json/*.json')))
-  print(len(files))
+  links = db.get_unprocessed_categories_links()
+  print(links)
