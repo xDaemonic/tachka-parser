@@ -5,4 +5,6 @@ import sqlite3
 import requests, json, os, glob
 
 if __name__ == '__main__':
-  pass
+  product_links = db.get_products_links()
+  print(len(product_links))
+  
