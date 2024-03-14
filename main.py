@@ -3,10 +3,11 @@ from src import pages_worker
 from src import format
 from src import helpers
 from src import json_worker
+from src import tests
 
 import multiprocessing as mp
 
-import requests, json
+import requests, json, os
 
 def scrap_links(link: dict):
   print('prorcess runned')
@@ -28,7 +29,6 @@ def scrap_links(link: dict):
     f.close()
 
 if __name__ == '__main__':
-  categories_links = categories_worker.load_categories_links()
-  # for link in categories_links:
-  #   scrap_links(link)
+  fails = tests.json_files_valid()
+  print(fails)
     
