@@ -30,5 +30,9 @@ def scrap_links(link: dict):
 
 if __name__ == '__main__':
   fails = tests.json_files_valid()
-  print(fails)
+  for fail in fails:
+    path = fail.replace('./json', '').replace('.json', '')
+    link = {'url': format.url(path), 'proc': False}
+    os.remove(fail)
+    scrap_links(link)
     
