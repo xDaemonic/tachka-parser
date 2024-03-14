@@ -14,4 +14,6 @@ import requests, json, os, glob
 
 if __name__ == '__main__':
   links = json_worker.get_product_links()
+  print(links)
+  print(len(links))
   
