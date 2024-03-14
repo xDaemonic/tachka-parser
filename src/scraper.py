@@ -1,5 +1,5 @@
 import json, requests
-from src import pages_worker, helpers, db
+from src import pages_worker, helpers, db, format
 
 def catch_links(link: dict):
   print('prorcess runned')
@@ -22,4 +22,5 @@ def catch_links(link: dict):
     
   con = db.get_connection()
   cur = con.cursor()
-  cur.execute("UPDATE `categories_links` SET proc = 1 WHERE id = ?", (link['id']))
+  cur.execute("UPDATE `categories_links` SET proc = 1 WHERE id = ?", (int(link['id']),))
+  con.commit()
