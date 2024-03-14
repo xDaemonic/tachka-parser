@@ -6,7 +6,7 @@ from src import json_worker
 from src import tests
 
 import multiprocessing as mp
-
+import sqlite3
 import requests, json, os
 
 def scrap_links(link: dict):
@@ -30,9 +30,10 @@ def scrap_links(link: dict):
 
 if __name__ == '__main__':
   fails = tests.json_files_valid()
-  for fail in fails:
-    path = fail.replace('./json', '').replace('.json', '')
-    link = {'url': format.url(path), 'proc': False}
-    os.remove(fail)
-    scrap_links(link)
+  print(fails)
+  # for fail in fails:
+  #   path = fail.replace('./json', '').replace('.json', '')
+  #   link = {'url': format.url(path), 'proc': False}
+  #   os.remove(fail)
+  #   scrap_links(link)
     
