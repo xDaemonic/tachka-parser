@@ -17,7 +17,7 @@ if __name__ == '__main__':
   cur = conn.cursor()
   
   cur.execute('SELECT COUNT(*) FROM product_links')
-  print(cur.fetchall())
+  print(cur.fetchone())
   # links = json_worker.get_product_links()
   # conn = db.get_connection()
   # cur = conn.cursor()
