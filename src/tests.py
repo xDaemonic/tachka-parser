@@ -49,10 +49,11 @@ def database_table_coluns(table: str) ->list:
 def run():
   fails = json_files_valid()
   tables = databse_connection()
+  cnt = count_categories_files()
   cols = []
   for table in tables:
     col = database_table_coluns(table)
     col.append(table)
     cols.append(col)
   
-  print(fails, tables, cols)
+  print(fails, cnt, tables, cols)
