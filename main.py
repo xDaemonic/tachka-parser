@@ -12,6 +12,13 @@ import multiprocessing as mp
 import sqlite3
 import requests, json, os, glob
 
-if __name__ == '__main__':
-  links = db.get_products_links()
-  print(len(links))
+if __name__ == '__main__':  
+  links = json_worker.get_product_links()
+  conn = db.get_connection()
+  cur = conn.cursor()
+  
+  for link in links:
+    cur.execute("INSERT INTO `product_links` (`url`, `proc`) VALUES (?, ?) ON CONFLICT(url) DO UPDATE SET url = url", (link['url'], bool(link['proc'])))
+    conn.commit()
+    
+  conn.close()
