@@ -47,6 +47,8 @@ def run():
   tables = databse_connection()
   cols = []
   for table in tables:
-    cols.append(database_table_coluns(table).append(table))
+    cols = database_table_coluns(table)
+    cols['table'] = table
+    cols.append(cols)
   
   print(fails, table, cols)
