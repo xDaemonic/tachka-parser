@@ -17,6 +17,10 @@ def json_files_valid():
       
   return fails
 
+def count_categories_files():
+  files = glob.glob('./json/*.json')
+  files = list(filter(lambda item: item['url'] != './json/categories_links.json' , files))
+  return len(files)
 
 def databse_connection():
   connection = db.get_connection()
@@ -45,7 +49,6 @@ def database_table_coluns(table: str) ->list:
 def run():
   fails = json_files_valid()
   tables = databse_connection()
-  print(tables)
   cols = []
   for table in tables:
     col = database_table_coluns(table)
