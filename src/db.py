@@ -28,3 +28,4 @@ def toDict(cur, data: list):
       data[i] =  dict(zip([c[0] for c in cur.description], data[i]))
       
   return data
+
