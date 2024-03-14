@@ -13,8 +13,5 @@ import sqlite3
 import requests, json, os, glob
 
 if __name__ == '__main__':
-  tests.run()
-  # links = db.get_unprocessed_categories_links()
-  # for link in links:
-    # scraper.catch_links(link)
+  links = json_worker.get_product_links()
   
