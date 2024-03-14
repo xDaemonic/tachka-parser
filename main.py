@@ -5,8 +5,4 @@ import sqlite3
 import requests, json, os, glob
 
 if __name__ == '__main__':
-  conn = db.get_connection()
-  cur = conn.cursor()
-  
-  cur.execute('SELECT COUNT(*) FROM product_links')
-  print(cur.fetchone())
+  pass
