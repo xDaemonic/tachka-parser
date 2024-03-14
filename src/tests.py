@@ -19,7 +19,7 @@ def json_files_valid():
 
 def count_categories_files():
   files = glob.glob('./json/*.json')
-  files = list(filter(lambda item: item['url'] != './json/categories_links.json' , files))
+  files = list(filter(lambda item: item != './json/categories_links.json' , files))
   return len(files)
 
 def databse_connection():
