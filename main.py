@@ -13,8 +13,7 @@ import requests, json, os, glob
 
 if __name__ == '__main__':
   links = db.get_unprocessed_categories_links()
-  print(links)
-  exit(200)
+  
   # con = db.get_connection()
   # cur = con.cursor()
   
