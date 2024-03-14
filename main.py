@@ -5,6 +5,7 @@ from src import helpers
 from src import json_worker
 from src import tests
 from src import migrations
+from src import db
 
 import multiprocessing as mp
 import sqlite3
@@ -32,15 +33,10 @@ def scrap_links(link: dict):
 if __name__ == '__main__':
   fails = tests.json_files_valid()
   tables = tests.databse_connection()
-  print(fails, tables)
-  # connection = sqlite3.connect('./sqlite/tachka.db')
+  cols = []
+  for table in tables:
+    cols.append(tests.database_table_coluns(table))
+
   
-  # migrations.run(connection)
-  # connection.close()
-  # fails = tests.json_files_valid()
-  # for fail in fails:
-  #   path = fail.replace('./json', '').replace('.json', '')
-  #   link = {'url': format.url(path), 'proc': False}
-  #   os.remove(fail)
-  #   scrap_links(link)
-    
+  print(fails, tables, cols)
+  # links = db.get_categories_links()
