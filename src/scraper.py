@@ -34,3 +34,5 @@ def catch_product(url: str):
   resp = requests.get(url)
   if (resp.status_code == 200):
     data = pages_worker.process_product_page(resp.text, url)
+    print(data)
+    exit()
