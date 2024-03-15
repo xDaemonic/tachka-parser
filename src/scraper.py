@@ -30,6 +30,7 @@ def catch_links(link: dict):
 def catch_product(link):
   conn = db.get_connection()
   cur = conn.cursor()
+  print(link['url'])
   resp = requests.get(link['url'])
   if (resp.status_code == 200):
     data = pages_worker.process_product_page(resp.text, link['url'])
