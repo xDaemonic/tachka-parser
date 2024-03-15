@@ -31,6 +31,7 @@ def catch_product(link):
   conn = db.get_connection()
   cur = conn.cursor()
   resp = requests.get(link['url'])
+  print(link['url'])
   if (resp.status_code == 200):
     data = pages_worker.process_product_page(resp.text, link['url'])
     cur.execute("INSERT INTO products (`url`, `data`) VALUES (?, ?)", (link['url'], json.dumps(data)))
