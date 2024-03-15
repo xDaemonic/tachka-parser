@@ -1,3 +1,6 @@
-from src import tests
+from src import tests, db
 
-print(tests.check_processed_produts())
+conn = db.get_connection()
+cur = conn.cursor()
+cur.execute('SELECT COUNT(*) FROM product_links WHERE proc = 0')
+print(cur.fetchone())
