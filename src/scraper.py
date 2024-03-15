@@ -27,12 +27,16 @@ def catch_links(link: dict):
   con.commit()
   
   
-def catch_product(url: str):
-  process = multiprocessing.current_process()
-  gp = format.remove_base_url(url)
-  # print(f"getting page: {gp}, process: {process.pid}")
-  resp = requests.get(url)
+def catch_product(link):
+  conn = db.get_connection()
+  cur = conn.cursor()
+  resp = requests.get(link['url'])
   if (resp.status_code == 200):
-    data = pages_worker.process_product_page(resp.text, url)
-    print(data)
-    exit()
+    data = pages_worker.process_product_page(resp.text, link['url'])
+    cur.execute("INSERT INTO products (`url`, `data`) VALUES (?, ?)", (link['url'], json.dumps(data)))
+    conn.commit()
+    
+    cur.execute("UPDATE product_links SET proc = 1 WHERE id = ?", (link['id'],))
+    conn.commit()
+    
+    

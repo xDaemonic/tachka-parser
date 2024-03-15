@@ -45,6 +45,14 @@ def database_table_columns(table: str) ->list:
   
   return [description[0] for description in cursor.description]
 
+def check_processed_produts():
+  conn = db.get_connection()
+  cur = conn.cursor()
+  
+  cur.execute('SELECT * FROM products WHERE EXISTS (SELECT url FROM product_links WHERE product_links.url = products.url AND proc = 1)')
+  res = cur.fetchall()
+  return len(res)
+
 def run():
   fails = json_files_valid()
   tables = database_connection()
