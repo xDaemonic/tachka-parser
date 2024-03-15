@@ -8,10 +8,10 @@ if __name__ == '__main__':
   # scraper.catch_product('https://tachka.ru/akkumulyator/chevrolet/cruze/2/acdelco-19375462-2500')
   product_links = db.get_unprocessed_products_links()
   product_links = helpers.chunks(product_links, 10)
-  print(len(list(product_links)))
-  exit()
   for chunk in product_links:
     process_list = []
+    print(len(chunk))
+    exit()
     for elem in chunk:
       process = mp.Process(target=scraper.catch_product, args=(elem,))
       process.start()
