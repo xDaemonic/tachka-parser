@@ -10,8 +10,6 @@ if __name__ == '__main__':
   product_links = helpers.chunks(product_links, 100)
   for chunk in product_links:
     process_list = []
-    print(len(chunk))
-    exit()
     for elem in chunk:
       process = mp.Process(target=scraper.catch_product, args=(elem,))
       process.start()
