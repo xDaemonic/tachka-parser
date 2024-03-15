@@ -33,5 +33,4 @@ def catch_product(url: str):
   # print(f"getting page: {gp}, process: {process.pid}")
   resp = requests.get(url)
   if (resp.status_code == 200):
-    data = pages_worker.process_product_page(resp.text)
-    exit(200)
+    data = pages_worker.process_product_page(resp.text, url)

@@ -1,6 +1,13 @@
 commands = [
   'CREATE TABLE IF NOT EXISTS `categories_links` (id INTEGER PRIMARY KEY, url TEXT UNIQUE, proc TINYINT)',
   'CREATE TABLE IF NOT EXISTS `product_links` (id INTEGER PRIMARY KEY, url TEXT UNIQUE, proc TINYINT)',
+  '''
+  CREATE TABLE IF NOT EXISTS `products` (
+    id INTEGER PRIMARY KEY,
+    url TEXT UNIQUE,
+    data TEXT
+  )
+  '''
 ]
 
 def get_list() -> list:

@@ -22,7 +22,7 @@ def count_categories_files():
   files = list(filter(lambda item: item != './json/categories_links.json' , files))
   return len(files)
 
-def databse_connection():
+def database_connection():
   connection = db.get_connection()
   cursor = connection.cursor()
   cursor.execute('''
@@ -38,7 +38,7 @@ def databse_connection():
   result = cursor.fetchall()
   return [table[0] for table in result]
 
-def database_table_coluns(table: str) ->list:
+def database_table_columns(table: str) ->list:
   connection = db.get_connection()
   cursor = connection.cursor()
   cursor.execute(f"SELECT * FROM {table} LIMIT 1")
@@ -47,11 +47,11 @@ def database_table_coluns(table: str) ->list:
 
 def run():
   fails = json_files_valid()
-  tables = databse_connection()
+  tables = database_connection()
   cnt = count_categories_files()
   cols = []
   for table in tables:
-    col = database_table_coluns(table)
+    col = database_table_columns(table)
     col.append(table)
     cols.append(col)
   
