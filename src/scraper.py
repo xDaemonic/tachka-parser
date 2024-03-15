@@ -34,7 +34,7 @@ def catch_product(link):
   resp = requests.get(link['url'])
   if (resp.status_code == 200):
     data = pages_worker.process_product_page(resp.text, link['url'])
-    cur.execute("INSERT INTO products (`url`, `data`) VALUES (?, ?)", (link['url'], json.dumps(data)))
+    cur.execute("INSERT INTO products (`url`, `data`) VALUES (?, ?) ON CONFLICT(url) DO UPDATE SET url = EXCLUDED.url", (link['url'], json.dumps(data)))
     conn.commit()
     
     cur.execute("UPDATE product_links SET proc = 1 WHERE id = ?", (link['id'],))
